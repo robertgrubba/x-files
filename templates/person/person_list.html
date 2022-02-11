@@ -1,0 +1,28 @@
+<!DOCTYPE thml>
+{% extends 'base.html' %}
+
+{% block body_block %}
+<h1>Person list</h1>
+
+{% for person in person_list %}
+
+<div class="card" style="width: 18rem; float:left; margin:20px; heigth: 36 rem;">
+	{% if person.image and request.user.is_authenticated %}
+  		<img class="card-img-top" src="{{ person.image.url }}" alt="Profile image">
+  	{% else %}
+  		<img class="card-img-top" src="https://toppng.com/uploads/preview/erson-outline-icon-png-person-icon-png-white-11562864385wyirbbsupu.png" alt="Profile image">
+	{% endif %}
+
+  <div class="card-body">
+	  {% if request.user.is_authenticated %}
+	  	<h5 class="card-title">{{ person.name }} {{ person.surname }}</h5>
+		<p class="card-text"> <i>{{ person.places.first.street }} {{ person.places.first.number }}</i></p>
+    		<p><a class="card-link" href="{% url 'person:detail' pk=person.pk %}">Zobacz akta</a></p>
+	  {% else %}
+		  <h5 class="card-title">***** *****</h5>
+		  <p class="card-text"> <i>******</i></p>
+	  {% endif %}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

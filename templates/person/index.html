@@ -1,0 +1,13 @@
+<html><head><title>Lista Osob w Bazie</title>
+	</head>
+<body>
+<h1>Lista osob w bazie</h1>
+{% if people %}
+{% for person in people %}
+{{ person.name }} {{ person.surname }} <br>
+{% endfor %}
+{% else %}
+	No people in the database
+{% endif %}
+</body>
+</html>

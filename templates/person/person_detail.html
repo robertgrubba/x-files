@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{% extends 'base.html' %}
+{% block body_block %}
+<h1>Akta {{ person.name }} {{ person.surname }}</h1>
+
+<div class="card" style="width: 18rem; float:left; margin-right:50px">
+	{% if person.image %}
+  		<img class="card-img-top" src="{{ person.image.url }}" alt="Profile image">
+  	{% else %}
+  		<img class="card-img-top" src="https://toppng.com/uploads/preview/erson-outline-icon-png-person-icon-png-white-11562864385wyirbbsupu.png" alt="Profile image">
+	{% endif %}
+
+  <div class="card-body">
+    <h5 class="card-title">{{ person.name }} {{ person.surname }}</h5>
+    <p class="card-text"> <i>{{ person.places.first.street }} {{ person.places.first.number }}</i></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    {% if person.nickname %}
+    <li class="list-group-item">ksywka: {{ person.nickname }}</li>
+    {% endif %}
+    {% if person.email %}
+    <li class="list-group-item">e-mail: {{ person.email }}</li>
+    {% endif %}
+    {% if person.telephone %}
+    <li class="list-group-item">tel: {{ person.telephone }}</li>
+    {% endif %}
+  </ul>
+  <div class="card-body">
+	
+	{% for website in person.websites.all %}
+		<a href="{{ website }}" class="card-link">{{website}}</a>
+	{% endfor %}
+  </div>
+</div>
+
+<div class="card-deck">
+	{% for note in person.notes.all %}
+	<div class="card" style="width:36rem;">
+	  <div class="card-body">
+	    <h5 class="card-title">{{ note.title }}</h5>
+	    <h6 class="card-subtitle mb-2 text-muted">{{ note.created }}</h6>
+	    <p class="card-text">{{ note.content |linebreaks }}</p>
+	  </div>
+	</div>
+{% endfor %}
+</div>
+{% endblock %}

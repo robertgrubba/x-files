@@ -8,7 +8,7 @@
 
 <div class="card" style="width: 18rem; float:left; margin:20px; heigth: 36 rem;">
 	{% if person.image and request.user.is_authenticated %}
-  		<img class="card-img-top" style="width: 182px" src="{{ person.image.url }}" alt="Profile image">
+  		<img class="card-img-top" style="height: 182px; width: 182px;" src="{{ person.image.url }}" alt="Profile image">
   	{% else %}
   		<img class="card-img-top" style="height: 182px;width: 182px;" src="https://toppng.com/uploads/preview/erson-outline-icon-png-person-icon-png-white-11562864385wyirbbsupu.png" alt="Profile image">
 	{% endif %}

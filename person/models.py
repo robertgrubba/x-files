@@ -14,9 +14,7 @@ class Person(models.Model):
     nickname = models.CharField(max_length=30,null=True,blank=True)
     email = models.EmailField(null=True,blank=True)
     telephone = models.CharField(max_length=10,null=True,blank=True)
-   # image = models.ImageField(upload_to='images/%Y/%m/%d/',default=None,null=True,blank=True)
     image = ResizedImageField(size=[500,300],quality=85,keep_meta=True,upload_to='images/%Y/%m/%d/',default=None,null=True,blank=True)
-#https://learndjango.com/tutorials/django-file-and-image-uploads-tutorial 
    
     def __str__(self):
         return self.name +" "+self.surname
@@ -42,7 +40,7 @@ class Place(models.Model):
     number = models.CharField(max_length=7)
     city = models.ForeignKey(City,on_delete=models.PROTECT,related_name='places')
     description = models.TextField()
-    persons = models.ManyToManyField(Person, default=None,null=True,blank=True,related_name='places')
+    persons = models.ManyToManyField(Person, default=None,blank=True,related_name='places')
 
     def __str__(self):
         owner = self.persons.all().first()

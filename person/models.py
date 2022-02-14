@@ -4,20 +4,27 @@ from django.db import models
 # Create your models here.
 class City(models.Model):
     name = models.CharField(max_length=50)
+    code = models.CharField(max_length=6,null=True,blank=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.code} {self.name}"
     
 class Person(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
     nickname = models.CharField(max_length=30,null=True,blank=True)
     email = models.EmailField(null=True,blank=True)
-    telephone = models.CharField(max_length=10,null=True,blank=True)
     image = ResizedImageField(size=[500,300],quality=85,keep_meta=True,upload_to='images/%Y/%m/%d/',default=None,null=True,blank=True)
    
     def __str__(self):
         return self.name +" "+self.surname
+
+class Telephone(models.Model):
+    number = models.CharField(max_length=10)
+    person = models.ForeignKey(Person,on_delete=models.CASCADE, related_name='telephones')
+
+    def __str__(self):
+            return self.number
 
 class Webpage(models.Model):
     url = models.URLField()

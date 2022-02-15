@@ -4,19 +4,37 @@ from django.contrib import admin
 
 from .models import Person,Note,Webpage,Place,City,Vehicle,File,Telephone
 
-admin.site.register(Person)
-admin.site.register(Note)
-admin.site.register(Webpage)
 admin.site.register(Place)
-admin.site.register(City)
-admin.site.register(Vehicle)
-admin.site.register(File)
-admin.site.register(Telephone)
 
-#class CityAdmin(admin.ModelAdmin):
-#    readonly_fields = ['addresses']
-#
-#    def addresses(self,City):
-#        return f"{City.places.street} {City.places.number}"
-#
-#admin.site.register(City,CityAdmin)
+class PlaceInstanceInline(admin.TabularInline):
+    model = Place.persons.through
+    extra = 1
+
+class TelephoneInstanceInline(admin.TabularInline):
+    model = Telephone
+    extra = 1
+
+class VehicleInstanceInline(admin.TabularInline):
+    model = Vehicle
+    extra = 1
+
+class WebpageInstanceInline(admin.TabularInline):
+    model = Webpage
+    extra = 1
+
+class FileInstanceInline(admin.TabularInline):
+    model = File
+    extra = 1
+
+class NoteInstanceInline(admin.TabularInline):
+    model = Note
+    extra = 1
+
+class PersonAdmin(admin.ModelAdmin):
+        list_display=('name','surname','nickname')
+        list_filter=('places',)
+
+        inlines = [PlaceInstanceInline,TelephoneInstanceInline,VehicleInstanceInline,WebpageInstanceInline,FileInstanceInline,NoteInstanceInline]
+
+admin.site.register(Person,PersonAdmin)
+

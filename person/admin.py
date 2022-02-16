@@ -32,7 +32,7 @@ class NoteInstanceInline(admin.TabularInline):
 
 class PersonAdmin(admin.ModelAdmin):
         list_display = ('name','surname','nickname')
-        list_filter = ('places',)
+        list_filter = ('places__city__name',)
         search_fields = ['name','surname','nickname']
         inlines = [PlaceInstanceInline,TelephoneInstanceInline,VehicleInstanceInline,WebpageInstanceInline,FileInstanceInline,NoteInstanceInline]
 

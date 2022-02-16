@@ -17,7 +17,7 @@ class Person(models.Model):
     image = ResizedImageField(size=[500,300],quality=85,keep_meta=True,upload_to='images/%Y/%m/%d/',default=None,null=True,blank=True)
    
     class Meta:
-        ordering = ['surname']
+        ordering = ['surname','name']
 
     def __str__(self):
         return self.name +" "+self.surname

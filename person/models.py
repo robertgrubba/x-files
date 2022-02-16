@@ -16,6 +16,9 @@ class Person(models.Model):
     email = models.EmailField(null=True,blank=True)
     image = ResizedImageField(size=[500,300],quality=85,keep_meta=True,upload_to='images/%Y/%m/%d/',default=None,null=True,blank=True)
    
+    class Meta:
+        ordering = ['surname']
+
     def __str__(self):
         return self.name +" "+self.surname
 
@@ -46,7 +49,7 @@ class Place(models.Model):
     street = models.CharField(max_length=100)
     number = models.CharField(max_length=7)
     city = models.ForeignKey(City,on_delete=models.PROTECT,related_name='places')
-    description = models.TextField()
+    description = models.TextField(blank=True)
     persons = models.ManyToManyField(Person, default=None,blank=True,related_name='places')
 
     def __str__(self):

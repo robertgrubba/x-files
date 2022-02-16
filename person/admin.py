@@ -31,9 +31,9 @@ class NoteInstanceInline(admin.TabularInline):
     extra = 1
 
 class PersonAdmin(admin.ModelAdmin):
-        list_display=('name','surname','nickname')
-        list_filter=('places',)
-
+        list_display = ('name','surname','nickname')
+        list_filter = ('places',)
+        search_fields = ['name','surname','nickname']
         inlines = [PlaceInstanceInline,TelephoneInstanceInline,VehicleInstanceInline,WebpageInstanceInline,FileInstanceInline,NoteInstanceInline]
 
 admin.site.register(Person,PersonAdmin)

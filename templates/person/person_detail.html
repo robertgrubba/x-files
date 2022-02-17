@@ -18,6 +18,11 @@
   <div class="card-body">
     <h5 class="card-title">{{ person.name }} {{ person.surname }}</h5>
     <p class="card-text"> <i>{{ person.places.first.street }} {{ person.places.first.number }}</i></p>
+    {% if request.user.is_authenticated %}	
+    <p class="card-text">
+	<a href="{% url 'admin:person_person_change' person.pk %}">Zmień</a>
+    </p>
+    {% endif %}
   </div>
   <ul class="list-group list-group-flush">
     {% if person.nickname %}

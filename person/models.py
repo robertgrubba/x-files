@@ -64,8 +64,8 @@ class Place(models.Model):
 class Vehicle(models.Model):
     brand = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
-    fuel = models.CharField(max_length=3)
-    year = models.CharField(max_length=9)
+    fuel = models.CharField(max_length=3,blank=True)
+    year = models.CharField(max_length=9,blank=True)
     plate = models.CharField(max_length=10)
     owner = models.ForeignKey(Person,default=None,on_delete=models.PROTECT,null=True,blank=True,related_name='vehicles')
 

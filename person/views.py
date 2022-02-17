@@ -8,6 +8,7 @@ from . import models
 
 class PersonListView(ListView):
     model = models.Person
+    paginate_by = 10
 
 class PersonDetailView(LoginRequiredMixin,DetailView):
     model = models.Person

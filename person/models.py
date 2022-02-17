@@ -40,7 +40,8 @@ class Note(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     person = models.ForeignKey(Person, default=None,on_delete=models.CASCADE,null=True,blank=True,related_name='notes')
-    created = models.DateField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title

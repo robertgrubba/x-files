@@ -4,7 +4,6 @@ from django.contrib import admin
 
 from .models import Person,Note,Webpage,Place,City,Vehicle,File,Telephone
 
-admin.site.register(Place)
 
 class PlaceInstanceInline(admin.TabularInline):
     model = Place.persons.through
@@ -37,4 +36,5 @@ class PersonAdmin(admin.ModelAdmin):
         inlines = [PlaceInstanceInline,TelephoneInstanceInline,VehicleInstanceInline,WebpageInstanceInline,FileInstanceInline,NoteInstanceInline]
 
 admin.site.register(Person,PersonAdmin)
-
+admin.site.register(Note)
+admin.site.register(Place)

@@ -1,5 +1,6 @@
 from django_resized import ResizedImageField
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class City(models.Model):
@@ -45,6 +46,9 @@ class Note(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('person:detail', args=[str(self.person.id)])
 
 class Place(models.Model):
     street = models.CharField(max_length=100)

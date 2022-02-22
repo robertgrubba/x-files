@@ -12,5 +12,6 @@ urlpatterns = [
     path('logout/',auth_views.LogoutView.as_view(next_page='person:login'),name='logout'),
     path('',views.PersonListView.as_view(),name='list'),
     path('<int:pk>/',views.PersonDetailView.as_view(),name='detail'),
+    path('note/create/<int:pk>',views.NoteCreate.as_view(),name='create-note'),
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

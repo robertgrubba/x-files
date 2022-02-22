@@ -22,6 +22,9 @@
     <p class="card-text">
 	<a href="{% url 'admin:person_person_change' person.pk %}">Zmień</a>
     </p>
+    <p class="card-text">
+	<a href="{% url 'person:create-note' %}">Dodaj notatkę</a>
+    </p>
     {% endif %}
   </div>
   <ul class="list-group list-group-flush">

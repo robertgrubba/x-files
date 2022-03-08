@@ -38,3 +38,4 @@ class PersonAdmin(admin.ModelAdmin):
 admin.site.register(Person,PersonAdmin)
 admin.site.register(Note)
 admin.site.register(Place)
+admin.site.register(City)
